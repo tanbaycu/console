@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cool Console - tanbaycu</title>
+    <title>Advanced Console - tanbaycu</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
@@ -19,6 +20,9 @@
         body {
             transition: background-color 0.3s, color 0.3s;
             font-family: 'Fira Code', monospace;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         body.light {
@@ -30,50 +34,37 @@
         }
 
         @keyframes glitch {
-            0% {
-                text-shadow: 0.05em 0 0 #00fffc, -0.05em -0.025em 0 #fc00ff,
-                    0.025em 0.05em 0 #fffc00;
-            }
-            14% {
-                text-shadow: 0.05em 0 0 #00fffc, -0.05em -0.025em 0 #fc00ff,
-                    0.025em 0.05em 0 #fffc00;
-            }
-            15% {
-                text-shadow: -0.05em -0.025em 0 #00fffc, 0.025em 0.025em 0 #fc00ff,
-                    -0.05em -0.05em 0 #fffc00;
-            }
-            49% {
-                text-shadow: -0.05em -0.025em 0 #00fffc, 0.025em 0.025em 0 #fc00ff,
-                    -0.05em -0.05em 0 #fffc00;
-            }
-            50% {
-                text-shadow: 0.025em 0.05em 0 #00fffc, 0.05em 0 0 #fc00ff,
-                    0 -0.05em 0 #fffc00;
-            }
-            99% {
-                text-shadow: 0.025em 0.05em 0 #00fffc, 0.05em 0 0 #fc00ff,
-                    0 -0.05em 0 #fffc00;
-            }
+
+            0%,
             100% {
-                text-shadow: -0.025em 0 0 #00fffc, -0.025em -0.025em 0 #fc00ff,
-                    -0.025em -0.05em 0 #fffc00;
+                text-shadow: -2px 0 #00fffc, 2px 2px #fc00ff;
+            }
+
+            25% {
+                text-shadow: 2px 0 #00fffc, -2px -2px #fc00ff;
+            }
+
+            50% {
+                text-shadow: -2px -2px #00fffc, 2px 2px #fc00ff;
+            }
+
+            75% {
+                text-shadow: 2px 2px #00fffc, -2px 0 #fc00ff;
             }
         }
 
         .glitch {
-            animation: glitch 725ms infinite;
+            animation: glitch 0.5s infinite;
         }
 
         .scanline {
             width: 100%;
             height: 100px;
             z-index: 8;
-            background: linear-gradient(
-                0deg,
-                rgba(0, 0, 0, 0) 0%,
-                rgba(255, 255, 255, 0.2) 10%,
-                rgba(0, 0, 0, 0.1) 100%
-            );
+            background: linear-gradient(0deg,
+                    rgba(0, 0, 0, 0) 0%,
+                    rgba(255, 255, 255, 0.2) 10%,
+                    rgba(0, 0, 0, 0.1) 100%);
             opacity: 0.1;
             position: absolute;
             bottom: 100%;
@@ -84,9 +75,11 @@
             0% {
                 bottom: 100%;
             }
+
             80% {
                 bottom: 100%;
             }
+
             100% {
                 bottom: -100%;
             }
@@ -137,84 +130,15 @@
             box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
         }
 
-        @media (max-width: 640px) {
-            .container {
-                padding: 1rem;
-            }
-            #console {
-                height: 60vh;
-            }
-        }
-
-        @media (min-width: 641px) and (max-width: 1024px) {
-            .container {
-                padding: 2rem;
-            }
-            #console {
-                height: 70vh;
-            }
-        }
-
-        @media (min-width: 1025px) {
-            .container {
-                padding: 3rem;
-            }
-            #console {
-                height: 80vh;
-            }
-        }
-
-        /* Cute animals */
-        .cute-animal {
-            position: absolute;
-            font-size: 24px;
-            pointer-events: none;
-        }
-
-        .cat {
-            animation: moveCat 20s infinite linear;
-        }
-
-        .dog {
-            animation: moveDog 25s infinite linear;
-        }
-
-        .rabbit {
-            animation: moveRabbit 22s infinite linear;
-        }
-
-        @keyframes moveCat {
-            0% { top: 0; left: 0; }
-            25% { top: 0; left: calc(100% - 24px); }
-            50% { top: calc(100% - 24px); left: calc(100% - 24px); }
-            75% { top: calc(100% - 24px); left: 0; }
-            100% { top: 0; left: 0; }
-        }
-
-        @keyframes moveDog {
-            0% { top: 0; right: 0; }
-            25% { top: calc(100% - 24px); right: 0; }
-            50% { top: calc(100% - 24px); right: calc(100% - 24px); }
-            75% { top: 0; right: calc(100% - 24px); }
-            100% { top: 0; right: 0; }
-        }
-
-        @keyframes moveRabbit {
-            0% { bottom: 0; left: 50%; }
-            25% { bottom: calc(100% - 24px); left: 25%; }
-            50% { bottom: 50%; left: 0; }
-            75% { bottom: calc(100% - 24px); left: 75%; }
-            100% { bottom: 0; left: 50%; }
-        }
-
-        /* Green checkmark animation */
         @keyframes checkmark {
             0% {
                 transform: scale(0);
             }
+
             50% {
                 transform: scale(1.2);
             }
+
             100% {
                 transform: scale(1);
             }
@@ -241,36 +165,233 @@
             top: 6px;
             left: 5px;
         }
+
+        #console {
+            height: calc(100vh - 200px);
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary) var(--background);
+        }
+
+        #console::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        #console::-webkit-scrollbar-track {
+            background: var(--background);
+        }
+
+        #console::-webkit-scrollbar-thumb {
+            background-color: var(--primary);
+            border-radius: 4px;
+        }
+
+        .settings-panel {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-left: 1px solid var(--primary);
+            padding: 20px;
+            z-index: 1000;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+        }
+
+        .settings-panel.active {
+            right: 0;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            display: none;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked+.toggle-slider {
+            background-color: #2196F3;
+        }
+
+        input:checked+.toggle-slider:before {
+            transform: translateX(26px);
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 0.5rem;
+            }
+
+            #console {
+                height: calc(100vh - 180px);
+            }
+
+            .text-2xl {
+                font-size: 1.25rem;
+            }
+
+            .settings-panel {
+                width: 100%;
+                right: -100%;
+            }
+        }
+
+        @media (min-width: 641px) and (max-width: 1024px) {
+            .container {
+                padding: 1rem;
+            }
+
+            #console {
+                height: calc(100vh - 190px);
+            }
+        }
+
+        @media (min-width: 1025px) {
+            .container {
+                padding: 1.5rem;
+            }
+        }
     </style>
 </head>
+
 <body class="bg-gray-900 text-green-400">
     <canvas id="matrix-rain"></canvas>
-    <div class="container mx-auto p-4 max-w-4xl relative">
-        <div class="cute-animal cat">🐱</div>
-        <div class="cute-animal dog">🐶</div>
-        <div class="cute-animal rabbit">🐰</div>
-        <div class="bg-gray-800 rounded-t-lg p-4 flex flex-col sm:flex-row items-center justify-between">
+    <div class="container mx-auto p-4 max-w-4xl flex flex-col h-screen relative">
+        <div class="bg-gray-800 rounded-t-lg p-4 flex flex-col sm:flex-row items-center justify-between mb-4">
             <div class="flex space-x-2 mb-4 sm:mb-0">
                 <div class="w-3 h-3 rounded-full bg-red-500"></div>
                 <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
                 <div class="w-3 h-3 rounded-full bg-green-500"></div>
             </div>
-            <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-green-500 glitch mb-4 sm:mb-0">Console | tanbaycu</h1>
-            <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-700 focus:outline-none transition-colors duration-200">
-                <i data-lucide="moon" class="w-6 h-6"></i>
+            <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-green-500 glitch mb-4 sm:mb-0">
+                Console</h1>
+            <button id="settings-toggle"
+                class="p-2 rounded-full hover:bg-gray-700 focus:outline-none transition-colors duration-200">
+                <i data-lucide="settings" class="w-6 h-6"></i>
             </button>
         </div>
-        <div id="console" class="bg-black border-2 border-green-500 rounded-b-lg overflow-y-auto p-4 mb-4 relative">
+        <div id="console"
+            class="bg-black border-2 border-green-500 rounded-lg p-4 mb-4 flex-grow overflow-y-auto relative">
             <div class="scanline"></div>
         </div>
         <div id="input-line" class="flex items-center bg-gray-800 rounded-lg p-2">
             <span id="prompt" class="text-green-500 mr-2 text-lg">&gt;</span>
-            <input type="text" id="command-input" class="bg-transparent border-none flex-grow text-green-400 focus:outline-none text-lg" autofocus>
-            <button id="submit-btn" class="ml-2 p-2 rounded-full hover:bg-gray-700 focus:outline-none transition-colors duration-200">
+            <input type="text" id="command-input"
+                class="bg-transparent border-none flex-grow text-green-400 focus:outline-none text-lg" autofocus>
+            <button id="submit-btn"
+                class="ml-2 p-2 rounded-full hover:bg-gray-700 focus:outline-none transition-colors duration-200">
                 <i data-lucide="send" class="w-5 h-5"></i>
             </button>
         </div>
     </div>
+
+    <div id="settings-panel" class="settings-panel">
+        <h3 class="text-2xl font-semibold mb-6 text-green-500">Settings</h3>
+        <div class="mb-6 flex items-center justify-between">
+            <span class="text-sm font-medium text-green-400">Theme</span>
+            <label class="toggle-switch">
+                <input type="checkbox" id="theme-toggle">
+                <span class="toggle-slider"></span>
+            </label>
+        </div>
+        <div class="mb-6">
+            <label for="font-size" class="block mb-2 text-sm font-medium text-green-400">Font Size</label>
+            <input type="range" id="font-size" min="12" max="24" value="16"
+                class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer">
+            <span id="font-size-value" class="block mt-1 text-sm text-green-400">16px</span>
+        </div>
+        <div class="mb-6">
+            <label for="typing-speed" class="block mb-2 text-sm font-medium text-green-400">Typing Speed</label>
+            <input type="range" id="typing-speed" min="10" max="100" value="50"
+                class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer">
+            <span id="typing-speed-value" class="block mt-1 text-sm text-green-400">50ms</span>
+        </div>
+        <div class="mb-6 flex items-center justify-between">
+            <span class="text-sm font-medium text-green-400">Sound</span>
+            <label class="toggle-switch">
+                <input type="checkbox" id="sound-toggle" checked>
+                <span class="toggle-slider"></span>
+            </label>
+        </div>
+        <div class="mb-6 flex items-center justify-between">
+            <span class="text-sm font-medium text-green-400">Auto-complete</span>
+            <label class="toggle-switch">
+                <input type="checkbox" id="autocomplete-toggle" checked>
+                <span class="toggle-slider"></span>
+            </label>
+        </div>
+        <div class="mb-6">
+            <label for="custom-command" class="block mb-2 text-sm font-medium text-green-400">Add Custom Command</label>
+            <input type="text" id="custom-command"
+                class="bg-gray-700 border border-gray-600 text-green-400 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                placeholder="Command name">
+            <input type="text" id="custom-command-response"
+                class="mt-2 bg-gray-700 border border-gray-600 text-green-400 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                placeholder="Command response">
+            <button id="add-custom-command"
+                class="mt-2 text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Add
+                Command</button>
+        </div>
+        <div class="mb-6">
+            <button id="export-settings"
+                class="w-full text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Export
+                Settings</button>
+        </div>
+        <div class="mb-6">
+            <label for="import-settings" class="block mb-2 text-sm font-medium text-green-400">Import Settings</label>
+            <input type="file" id="import-settings"
+                class="block w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-green-600 file:text-white hover:file:bg-green-700">
+        </div>
+    </div>
+
+    <div id="overlay" class="overlay"></div>
 
     <audio id="keySound" src="https://www.soundjay.com/buttons/sounds/button-10.mp3" preload="auto"></audio>
 
@@ -280,13 +401,32 @@
         const submitBtn = document.getElementById('submit-btn');
         const keySound = document.getElementById('keySound');
         const themeToggle = document.getElementById('theme-toggle');
+        const settingsToggle = document.getElementById('settings-toggle');
+        const settingsPanel = document.getElementById('settings-panel');
+        const overlay = document.getElementById('overlay');
+        const fontSizeSlider = document.getElementById('font-size');
+        const fontSizeValue = document.getElementById('font-size-value');
+        const typingSpeedSlider = document.getElementById('typing-speed');
+        const typingSpeedValue = document.getElementById('typing-speed-value');
+        const soundToggle = document.getElementById('sound-toggle');
+        const autocompleteToggle = document.getElementById('autocomplete-toggle');
+        const customCommandInput = document.getElementById('custom-command');
+        const customCommandResponse = document.getElementById('custom-command-response');
+        const addCustomCommandBtn = document.getElementById('add-custom-command');
+        const exportSettingsBtn = document.getElementById('export-settings');
+        const importSettingsInput = document.getElementById('import-settings');
+
+        let typingSpeed = 50;
+        let customCommands = {};
 
         function playKeySound() {
-            keySound.currentTime = 0;
-            keySound.play();
+            if (soundToggle.checked) {
+                keySound.currentTime = 0;
+                keySound.play();
+            }
         }
 
-        function typeWriter(text, element, speed = 50) {
+        function typeWriter(text, element, speed = typingSpeed) {
             let i = 0;
             function type() {
                 if (i < text.length) {
@@ -322,47 +462,58 @@
             addToConsole(command, true, true);
             let response;
 
-            switch(command.toLowerCase()) {
-                case 'hello':
-                    response = 'Greetings! Check out my <a href="https://github.com/tanbaycu" target="_blank" class="text-blue-400 hover:underline">Github</a>. Welcome to the Mega Ultra Cool Console! We hope you enjoy your stay in this digital wonderland. Feel free to explore and discover all the amazing features we have to offer!';
-                    break;
-                case 'date':
-                    response = 'Current stardate: ' + new Date().toLocaleDateString();
-                    break;
-                case 'time':
-                    response = 'Current time in the matrix: ' + new Date().toLocaleTimeString();
-                    break;
-                case 'help':
-                    response = 'Available commands: hello, date, time, clear, help, hack, matrix, joke, game, theme';
-                    break;
-                case 'clear':
-                    console.innerHTML = '';
-                    return;
-                case 'hack':
-                    response = 'Initiating advanced hack sequence... Firewalls breached! Mainframe access granted! You now control the entire cybersphere.';
-                    break;
-                case 'matrix':
-                    response = 'Activating the Matrix protocol... Reality is bending. Can you see the code now, Neo?';
-                    toggleMatrixRain();
-                    break;
-                case 'joke':
-                    const jokes = [
-                        "Why do programmers prefer dark mode? Because light attracts bugs!",
-                        "Why did the programmer quit his job? Because he didn't get arrays!",
-                        "Why do programmers always mix up Christmas and Halloween? Because Oct 31 == Dec 25!"
-                    ];
-                    response = jokes[Math.floor(Math.random() * jokes.length)];
-                    break;
-                case 'game':
-                    response = 'Launching mini-game... Get ready to test your hacking skills!';
-                    startGame();
-                    break;
-                case 'theme':
-                    toggleTheme();
-                    response = 'Theme toggled. How\'s that for a visual hack?';
-                    break;
-                default:
-                    response = `Command not recognized: ${command}. Are you even trying to hack? Type 'help' for available commands.`;
+            if (customCommands[command.toLowerCase()]) {
+                response = customCommands[command.toLowerCase()];
+            } else {
+                switch (command.toLowerCase()) {
+                    case 'hello':
+                        response = 'Greetings! Check out my <a href="https://github.com/tanbaycu" target="_blank" class="text-blue-400 hover:underline">Github</a>. Welcome to the Advanced Console! We hope you enjoy your stay in this digital wonderland. Feel free to explore and discover all the amazing features we have to offer!';
+                        break;
+                    case 'date':
+                        response = 'Current stardate: ' + new Date().toLocaleDateString();
+                        break;
+                    case 'time':
+                        response = 'Current time in the matrix: ' + new Date().toLocaleTimeString();
+                        break;
+                    case 'help':
+                        response = 'Available commands: hello, date, time, clear, help, hack, matrix, joke, game, theme, settings';
+                        if (Object.keys(customCommands).length > 0) {
+                            response += ', ' + Object.keys(customCommands).join(', ');
+                        }
+                        break;
+                    case 'clear':
+                        console.innerHTML = '';
+                        return;
+                    case 'hack':
+                        response = 'Initiating advanced hack sequence... Firewalls breached! Mainframe access granted! You now control the entire cybersphere.';
+                        break;
+                    case 'matrix':
+                        response = 'Activating the Matrix protocol... Reality is bending. Can you see the code now, Neo?';
+                        toggleMatrixRain();
+                        break;
+                    case 'joke':
+                        const jokes = [
+                            "Why do programmers prefer dark mode? Because light attracts bugs!",
+                            "Why did the programmer quit his job? Because he didn't get arrays!",
+                            "Why do programmers always mix up Christmas and Halloween? Because Oct 31 == Dec 25!"
+                        ];
+                        response = jokes[Math.floor(Math.random() * jokes.length)];
+                        break;
+                    case 'game':
+                        response = 'Launching mini-game... Get ready to test your hacking skills!';
+                        startGame();
+                        break;
+                    case 'theme':
+                        toggleTheme();
+                        response = 'Theme toggled. How\'s that for a visual hack?';
+                        break;
+                    case 'settings':
+                        toggleSettings();
+                        response = 'Settings panel toggled. Customize your console experience!';
+                        break;
+                    default:
+                        response = `Command not recognized: ${command}. Are you even trying to hack? Type 'help' for available commands.`;
+                }
             }
 
             addToConsole(response);
@@ -376,31 +527,103 @@
             }
         }
 
-        commandInput.addEventListener('keyup', function(event) {
+        commandInput.addEventListener('keyup', function (event) {
             if (event.key === 'Enter') {
                 handleCommand();
             } else {
                 playKeySound();
+                if (autocompleteToggle.checked) {
+                    autocomplete(this.value);
+                }
             }
         });
 
         submitBtn.addEventListener('click', handleCommand);
 
-        // Theme toggle
         function toggleTheme() {
             document.body.classList.toggle('light');
-            const moonIcon = themeToggle.querySelector('i');
-            if (document.body.classList.contains('light')) {
-                moonIcon.setAttribute('data-lucide', 'sun');
-            } else {
-                moonIcon.setAttribute('data-lucide', 'moon');
-            }
-            lucide.createIcons();
+            themeToggle.checked = document.body.classList.contains('light');
         }
 
-        themeToggle.addEventListener('click', toggleTheme);
+        themeToggle.addEventListener('change', toggleTheme);
 
-        // Matrix rain effect
+        function toggleSettings() {
+            settingsPanel.classList.toggle('active');
+            overlay.classList.toggle('active');
+        }
+
+        settingsToggle.addEventListener('click', toggleSettings);
+        overlay.addEventListener('click', toggleSettings);
+
+        fontSizeSlider.addEventListener('input', function () {
+            console.style.fontSize = this.value + 'px';
+            fontSizeValue.textContent = this.value + 'px';
+        });
+
+        typingSpeedSlider.addEventListener('input', function () {
+            typingSpeed = 110 - this.value;
+            typingSpeedValue.textContent = this.value + 'ms';
+        });
+
+        addCustomCommandBtn.addEventListener('click', function () {
+            const command = customCommandInput.value.trim().toLowerCase();
+            const response = customCommandResponse.value.trim();
+            if (command && response) {
+                customCommands[command] = response;
+                customCommandInput.value = '';
+                customCommandResponse.value = '';
+                addToConsole(`Custom command "${command}" added successfully.`);
+            }
+        });
+
+        function autocomplete(input) {
+            const commands = ['hello', 'date', 'time', 'help', 'clear', 'hack', 'matrix', 'joke', 'game', 'theme', 'settings', ...Object.keys(customCommands)];
+            const matches = commands.filter(cmd => cmd.startsWith(input.toLowerCase()));
+            if (matches.length === 1) {
+                commandInput.value = matches[0];
+            }
+        }
+
+        exportSettingsBtn.addEventListener('click', function () {
+            const settings = {
+                theme: document.body.classList.contains('light'),
+                fontSize: fontSizeSlider.value,
+                typingSpeed: typingSpeedSlider.value,
+                sound: soundToggle.checked,
+                autocomplete: autocompleteToggle.checked,
+                customCommands: customCommands
+            };
+            const blob = new Blob([JSON.stringify(settings)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'console-settings.json';
+            a.click();
+        });
+
+        importSettingsInput.addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const settings = JSON.parse(e.target.result);
+                    document.body.classList.toggle('light', settings.theme);
+                    themeToggle.checked = settings.theme;
+                    fontSizeSlider.value = settings.fontSize;
+                    console.style.fontSize = settings.fontSize + 'px';
+                    fontSizeValue.textContent = settings.fontSize + 'px';
+                    typingSpeedSlider.value = settings.typingSpeed;
+                    typingSpeed = 110 - settings.typingSpeed;
+                    typingSpeedValue.textContent = settings.typingSpeed + 'ms';
+                    soundToggle.checked = settings.sound;
+                    autocompleteToggle.checked = settings.autocomplete;
+                    customCommands = settings.customCommands;
+                    addToConsole('Settings imported successfully.');
+                };
+                reader.readAsText(file);
+            }
+        });
+
         const canvas = document.getElementById('matrix-rain');
         const ctx = canvas.getContext('2d');
 
@@ -448,12 +671,11 @@
             }
         }
 
-        // Mini-game
         function startGame() {
             let gameActive = true;
             let score = 0;
             const gameContainer = document.createElement('div');
-            gameContainer.className = 'fixed inset-0 flex items-center justify-center bg-black bg-opacity-75';
+            gameContainer.className = 'fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50';
             gameContainer.innerHTML = `
                 <div class="bg-gray-800 p-6 rounded-lg text-center">
                     <h2 class="text-3xl mb-6 text-green-400">Hack the System!</h2>
@@ -495,27 +717,24 @@
             moveTarget();
         }
 
-        addToConsole('Welcome to the   tanbaycu Console! Type "help" for available commands. Prepare to hack the multiverse!');
+        addToConsole('Welcome to the Advanced tanbaycu Console! Type "help" for available commands. Prepare to hack the multiverse!');
 
-        // Initialize Lucide icons
         lucide.createIcons();
 
-        // Responsive design
-        function adjustConsoleHeight() {
+        function adjustLayout() {
             const windowHeight = window.innerHeight;
             const consoleElement = document.getElementById('console');
-            if (windowHeight < 600) {
-                consoleElement.style.height = '50vh';
-            } else if (windowHeight < 900) {
-                consoleElement.style.height = '60vh';
-            } else {
-                consoleElement.style.height = '70vh';
-            }
+            const containerElement = document.querySelector('.container');
+            const headerHeight = document.querySelector('.bg-gray-800').offsetHeight;
+            const inputLineHeight = document.getElementById('input-line').offsetHeight;
+            const padding = parseInt(getComputedStyle(containerElement).padding) * 2;
+
+            consoleElement.style.height = `${windowHeight - headerHeight - inputLineHeight - padding}px`;
         }
 
-        window.addEventListener('resize', adjustConsoleHeight);
-        adjustConsoleHeight();
+        window.addEventListener('resize', adjustLayout);
+        adjustLayout();
     </script>
 </body>
-</html>
 
+</html>
